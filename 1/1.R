@@ -34,8 +34,8 @@ dohod <- log(dohod)
 dohod
 
 #=========Задание 4=========
-write(5, "Вариант.txt")
-N <- as.numeric(readLines(con="Вариант.txt"))
+write(5, "1_4/Вариант.txt")
+N <- as.numeric(readLines(con="1_4/Вариант.txt"))
 N
 2 * N - 1
 
@@ -109,20 +109,20 @@ income_class
 
 #=========Задание 8=========
 x <- c(1, 0, 2, 3, 6, 8, 12, 15, 0, 9)
-write(x, "coords.txt", ncolumns=1)
-x = scan("coords.txt")
+write(x, "2_8/coords.txt", ncolumns=1)
+x = scan("2_8/coords.txt")
 x
 P = 2.32
 Lp = sum(x**P)
-write(Lp, "result.txt")
+write(Lp, "2_8/result.txt")
 
 #=========Задание 9=========
 x <- c(1, 0, 2, 3, 6, 8, 12, 15, 0, 9)
-write(x, "coords.txt", ncolumns=1)
-x = scan("coords.txt")
+write(x, "2_9/coords.txt", ncolumns=1)
+x = scan("2_9/coords.txt")
 x
 diff_x <- diff(x)
 diff_x
 diff2_x <- diff(diff_x)
 diff2_x
-cat(diff_x, "\n", diff2_x, file = "diff_vectors.txt")
+cat(diff_x, "\n", diff2_x, file = "2_9/diff_vectors.txt")
