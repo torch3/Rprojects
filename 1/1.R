@@ -29,7 +29,7 @@ x <- as.character(x)
 class(x)
 
 #=========Задание 3=========
-dohod = 1573
+dohod <- 1573
 dohod <- log(dohod)
 dohod
 
@@ -110,16 +110,16 @@ income_class
 #=========Задание 8=========
 x <- c(1, 0, 2, 3, 6, 8, 12, 15, 0, 9)
 write(x, "2_8/coords.txt", ncolumns=1)
-x = scan("2_8/coords.txt")
+x <- scan("2_8/coords.txt")
 x
-P = 2.32
-Lp = sum(x**P)
+P <- 2.32
+Lp <- sum(x**P)
 write(Lp, "2_8/result.txt")
 
 #=========Задание 9=========
 x <- c(1, 0, 2, 3, 6, 8, 12, 15, 0, 9)
 write(x, "2_9/coords.txt", ncolumns=1)
-x = scan("2_9/coords.txt")
+x <- scan("2_9/coords.txt")
 x
 diff_x <- diff(x)
 diff_x
