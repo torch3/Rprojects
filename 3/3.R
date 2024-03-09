@@ -73,6 +73,8 @@ df
 
 #====================================Часть 3====================================
 #___________________________________Задание 1___________________________________
+install.packages("car")
+library("car")
 df <- Ornstein
 df
 
@@ -125,7 +127,6 @@ row_sd <- function(row) {
 
 frame1 <- covid_data %>% 
     select(Region, Lat, Long) %>% 
-    # mutate(Region = str_sub(Region, end = 25)) %>% 
     mutate(TotalCases = rowSums(select(covid_data, -(Region:Long)),
                                 na.rm = TRUE)) %>% 
     mutate(Average = rowMeans(select(covid_data, -(Region:Long)),
@@ -135,11 +136,11 @@ frame1 <- covid_data %>%
 #___________________________________Задание 5___________________________________
 frame2 <- covid_data %>% select(-(Lat: Long)) %>% 
     gather(key = "Date", value = "X", -Region) %>%
-    spread(key = "Region", value = "X")
+    pivot_wider(names_from = "Region", values_from = "X", names_sep = "_")
 
-# names(frame2) <- str_sub(names(frame2), end = 25)
 frame2$Date <- str_replace_all(frame2$Date, "X", "0")
-frame2$Date <- as.Date(frame2$Date, format = "%m.%d.%y")
+# frame2$Date <- as.Date(frame2$Date, format = "%m.%d.%y")
+frame2$Date <- format(as.Date(frame2$Date, format = "%m.%d.%y"), "%Y-%m-%d")
 
 #___________________________________Задание 6___________________________________
 # install.packages("openxlsx")
@@ -156,12 +157,4 @@ write.xlsx(frame1, file = "data_output/frame1.xlsx", rowNames = FALSE)
 write.table(frame2, file = "data_output/frame2.txt", sep = "\t", row.names = FALSE)
 write.csv(frame2, file = "data_output/frame2.csv", row.names = FALSE)
 write.xlsx(frame2, file = "data_output/frame2.xlsx", rowNames = FALSE)
-
-
-
-
-
-
-
-
 
