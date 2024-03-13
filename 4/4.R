@@ -1,15 +1,11 @@
 #====================================Часть 1====================================
 #___________________________________Задание 1___________________________________
-# install.packages('readxl')
-# install.packages('lubridate')
 library(readxl)
-library(lubridate)
 gas <- read_excel('GAZ.xlsx', 
-                  col_types = c('numeric', 'numeric', 'numeric', 'numeric', 
+                  col_types = c('date', 'numeric', 'numeric', 'numeric', 
                                 'numeric', 'numeric', 'text', 'text', 'text'))
 colnames(gas) <- c("Date", "Preasure_MPa", "Temp_C", "Gas_Prod_m3_per_d", 
                    "Cond_m3_per_d", "Water_m3_per_d", "ID", "Bush", "Group")
-gas$Date <- ymd("1899-12-31") + days(gas$Date - 1)
 
 #___________________________________Задание 2___________________________________
 nrow(gas)
