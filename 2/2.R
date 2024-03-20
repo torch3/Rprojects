@@ -65,7 +65,8 @@ eigen_values <- eigen(A)$values
 eigen_values
 
 #=========Задание 3=========
-B <- diag(1, 2, 2) - A
+I = diag(2)
+B <- I - A
 B
 
 #=========Задание 4=========
@@ -77,13 +78,14 @@ u_result <- solve(A, f)
 u_result
 
 #=========Задание 6=========
-u1 = B %*% u + f
-u2 = B %*% u1 + f
-u3 = B %*% u2 + f
-u4 = B %*% u3 + f
-u5 = B %*% u4 + f
-u6 = B %*% u5 + f
-u7 = B %*% u6 + f
+u0 <- u
+u1 <- B %*% u0 + f
+u2 <- B %*% u1 + f
+u3 <- B %*% u2 + f
+u4 <- B %*% u3 + f
+u5 <- B %*% u4 + f
+u6 <- B %*% u5 + f
+u7 <- B %*% u6 + f
 u7
 
 #=========Задание 7=========
@@ -100,7 +102,8 @@ B <- diag(1, 2, 2) - A
 B
 u_result <- solve(A, f)
 u_result
-u1 = B %*% u + f
+u0 <- u
+u1 = B %*% u0 + f
 u2 = B %*% u1 + f
 u3 = B %*% u2 + f
 u4 = B %*% u3 + f
@@ -125,7 +128,7 @@ dimnames(surface_matrix) <- list(x, y)
 surface_matrix
 
 #=========Задание 1=========
-file <- file("3_1/summary.txt", open = "w")
+file <- file("2_1/summary.txt", open = "w")
 cat("number of matrix elements:",
     length(surface_matrix), "\n", file = file)
 cat("number of rows:",
@@ -155,7 +158,7 @@ surface_matrix <- outer(X = x,
                         FUN = function(x,y) Re(exp(-1i * 0.5 * x * y)))
 dimnames(surface_matrix) <- list(x, y)
 surface_matrix
-file <- file("3_2/summary2.txt", open = "w")
+file <- file("2_2/summary2.txt", open = "w")
 cat("number of matrix elements:",
     length(surface_matrix), "\n", file = file)
 cat("number of rows:",
@@ -171,7 +174,7 @@ cat("col sums:",
 close(file)
 
 #=========Задание 3=========
-input <- scan("3_3/input.txt")
+input <- scan("2_3/input.txt")
 start_row <- input[1]
 end_row <- input[2]
 step_row <- input[3]
@@ -187,7 +190,7 @@ surface_matrix <- outer(X = x,
                         FUN = function(x,y) Re(exp(-1i * 0.5 * x * y)))
 dimnames(surface_matrix) <- list(x, y)
 surface_matrix
-file <- file("3_3/summary3.txt", open = "w")
+file <- file("2_3/summary3.txt", open = "w")
 cat("number of matrix elements:",
     length(surface_matrix), "\n", file = file)
 cat("number of rows:",

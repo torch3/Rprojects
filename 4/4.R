@@ -1,6 +1,9 @@
 #====================================Часть 1====================================
 #___________________________________Задание 1___________________________________
+# install.packages('readxl')
+# install.packages('lubridate')
 library(readxl)
+library(lubridate)
 gas <- read_excel('GAZ.xlsx', 
                   col_types = c('date', 'numeric', 'numeric', 'numeric', 
                                 'numeric', 'numeric', 'text', 'text', 'text'))

@@ -161,8 +161,26 @@ values <- sapply(taus, function(t) alter_jones(xn, t))
 taus[which.min(values)]
 
 #___________________________________Задание 6___________________________________
-res <- alter_jones(out_of_trend(df$AAPL.High, 1000), 1000)
-plot(res)
+# install.packages("ggplot2")
+library(ggplot2)
+res_Arifm <- alter_jones(out_of_trend(df$AAPL.High, 1000, "Arifm"), 101)
+res_Geom <- alter_jones(out_of_trend(df$AAPL.High, 1000, "Geom"), 343)
+res_Garm <- alter_jones(out_of_trend(df$AAPL.High, 1000, "Garm"), 100)
+xmax <-  max(length(res_Arifm), length(res_Geom), length(res_Garm))
+ymax <- max(res_Arifm, res_Geom, res_Garm)
+
+plot <- ggplot() + 
+    geom_line(data = as.data.frame(res_Arifm), 
+              aes(x = 1:length(res_Arifm), y = res_Arifm), 
+              color = "green") + 
+    geom_line(data = as.data.frame(res_Geom), 
+              aes(x = 1:length(res_Geom), y = res_Geom), 
+              color = "blue") + 
+    geom_line(data = as.data.frame(res_Garm), 
+              aes(x = 1:length(res_Garm), y = res_Garm), 
+              color = "red") + 
+    labs(x = "Index", y = "Value")
+plot
 
 #====================================Часть 3====================================
 #___________________________________Задание 1___________________________________
@@ -193,3 +211,15 @@ SIM <- function(A, u0, f, n_iter = 10^5, eps = 10^(-7)) {
     warning("Maximum number of iterations reached without convergence.")
     return(u)
 }
+
+A <- diag(c(4, 9), nrow = 2, ncol = 2)
+I = diag(2)
+B <- I - A
+
+f <- c(4, 2)
+u <- c(0.2, -0.3)
+
+u_result <- SIM(A, u, f)
+u_result
+
+#_______________________________________________________________________________
